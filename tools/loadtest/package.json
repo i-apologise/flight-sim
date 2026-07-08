@@ -4,7 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "tsx index.ts"
+    "start": "tsx index.ts",
+    "test:sync": "tsx sync-test.ts",
+    "test:combat": "tsx combat-test.ts",
+    "test:stress-ci": "PLAYERS=8 DURATION_MS=8000 HZ=15 tsx stress-50.ts",
+    "test:it": "tsx sync-test.ts && tsx combat-test.ts && PLAYERS=8 DURATION_MS=8000 HZ=15 tsx stress-50.ts"
   },
   "dependencies": {
     "@flight-sim/shared": "workspace:*",
