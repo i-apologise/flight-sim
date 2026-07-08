@@ -13,7 +13,12 @@
     "loadtest": "pnpm --filter @flight-sim/loadtest start",
     "build:client": "pnpm --filter @flight-sim/client build",
     "start": "pnpm --filter @flight-sim/client build && pnpm --filter @flight-sim/server-node start",
-    "play": "pnpm start"
+    "play": "pnpm start",
+    "test:unit": "pnpm --filter @flight-sim/shared test",
+    "test:it": "pnpm --filter @flight-sim/loadtest test:it",
+    "test:sync": "pnpm --filter @flight-sim/loadtest test:sync",
+    "test:combat": "pnpm --filter @flight-sim/loadtest test:combat",
+    "ci:local": "pnpm test:unit && pnpm -r typecheck && bash scripts/ci-it.sh"
   },
   "engines": {
     "node": ">=20"

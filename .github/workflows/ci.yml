@@ -1,19 +1,113 @@
-name: ci
+name: CI
+
 on:
   push:
+    branches: [main]
   pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
+  unit:
+    name: Unit + typecheck
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+
       - uses: pnpm/action-setup@v4
         with:
           version: 10
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
-      - run: pnpm install
-      - run: pnpm --filter @flight-sim/shared test
-      - run: pnpm -r typecheck
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Shared unit tests
+        run: pnpm --filter @flight-sim/shared test
+
+      - name: Typecheck all packages
+        run: pnpm -r typecheck
+
+      - name: Build client
+        run: pnpm --filter @flight-sim/client build
+
+  integration:
+    name: Integration (server + loadtests)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Start game server
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/flight-sim-ci
+          STRESS_MAX_PLAYERS=32 TIER=public PORT=8787 \
+            pnpm --filter @flight-sim/server-node start \
+            > /tmp/flight-sim-ci/server.log 2>&1 &
+          echo $! > /tmp/flight-sim-ci/server.pid
+          echo "Server PID $(cat /tmp/flight-sim-ci/server.pid)"
+
+      - name: Wait for health
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 40); do
+            if curl -sf http://127.0.0.1:8787/api/health >/dev/null; then
+              echo "Server healthy after ${i}s"
+              curl -s http://127.0.0.1:8787/api/health
+              echo
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "=== server log ==="
+          cat /tmp/flight-sim-ci/server.log || true
+          exit 1
+
+      - name: IT — multiplayer position sync
+        run: pnpm --filter @flight-sim/loadtest test:sync
+        env:
+          API: http://127.0.0.1:8787
+
+      - name: IT — combat hit/damage
+        run: pnpm --filter @flight-sim/loadtest test:combat
+        env:
+          API: http://127.0.0.1:8787
+
+      - name: IT — 8-bot stress smoke
+        run: pnpm --filter @flight-sim/loadtest test:stress-ci
+        env:
+          API: http://127.0.0.1:8787
+          STRESS_MAX_PLAYERS: "32"
+
+      - name: Stop server
+        if: always()
+        run: |
+          if [ -f /tmp/flight-sim-ci/server.pid ]; then
+            pid=$(cat /tmp/flight-sim-ci/server.pid)
+            kill "$pid" 2>/dev/null || true
+            # also stop any child tsx/node for that process group if still up
+            sleep 1
+            kill -9 "$pid" 2>/dev/null || true
+          fi
+          echo "=== server log (tail) ==="
+          tail -n 80 /tmp/flight-sim-ci/server.log || true
