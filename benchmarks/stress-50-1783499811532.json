@@ -1,0 +1,403 @@
+{
+  "meta": {
+    "players": 50,
+    "joined": 50,
+    "hz": 15,
+    "durationMs": 30000,
+    "room": "arena",
+    "mode": "deathmatch",
+    "api": "http://127.0.0.1:8787",
+    "timestamp": "2026-07-08T08:36:51.530Z"
+  },
+  "totals": {
+    "bytesIn": 105197382,
+    "bytesOut": 1985268,
+    "snapshots": 22436,
+    "errors": 0,
+    "bytesInPerSec": 3506579.4,
+    "bytesOutPerSec": 66175.6,
+    "avgSnapshotsPerBot": 448.72
+  },
+  "bandwidth": {
+    "downlinkMBps": 3.344134712219238,
+    "uplinkMBps": 0.06310997009277344,
+    "downlinkKBpsPerBot": 68.48787890625
+  },
+  "timeline": [
+    {
+      "t": 20,
+      "players": 1,
+      "snapPlayers": 0,
+      "bytesInTotal": 0,
+      "bytesOutTotal": 0,
+      "snapshotsTotal": 0,
+      "errors": 0,
+      "rssMB": 79.75,
+      "heapMB": 10.086700439453125
+    },
+    {
+      "t": 1001,
+      "players": 26,
+      "snapPlayers": 25,
+      "bytesInTotal": 336013,
+      "bytesOutTotal": 21290,
+      "snapshotsTotal": 180,
+      "errors": 0,
+      "rssMB": 113.140625,
+      "heapMB": 12.847427368164062
+    },
+    {
+      "t": 2001,
+      "players": 51,
+      "snapPlayers": 50,
+      "bytesInTotal": 2505327,
+      "bytesOutTotal": 75580,
+      "snapshotsTotal": 735,
+      "errors": 0,
+      "rssMB": 115.46875,
+      "heapMB": 12.599578857421875
+    },
+    {
+      "t": 3003,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 6078927,
+      "bytesOutTotal": 141580,
+      "snapshotsTotal": 1485,
+      "errors": 0,
+      "rssMB": 120.578125,
+      "heapMB": 15.61474609375
+    },
+    {
+      "t": 4002,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 9654927,
+      "bytesOutTotal": 207580,
+      "snapshotsTotal": 2235,
+      "errors": 0,
+      "rssMB": 124.421875,
+      "heapMB": 13.584335327148438
+    },
+    {
+      "t": 5003,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 13293027,
+      "bytesOutTotal": 273580,
+      "snapshotsTotal": 2985,
+      "errors": 0,
+      "rssMB": 125.375,
+      "heapMB": 12.214515686035156
+    },
+    {
+      "t": 6004,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 16869027,
+      "bytesOutTotal": 338612,
+      "snapshotsTotal": 3735,
+      "errors": 0,
+      "rssMB": 125.59375,
+      "heapMB": 17.277252197265625
+    },
+    {
+      "t": 7004,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 20445027,
+      "bytesOutTotal": 403820,
+      "snapshotsTotal": 4485,
+      "errors": 0,
+      "rssMB": 125.625,
+      "heapMB": 13.451881408691406
+    },
+    {
+      "t": 8005,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 24021027,
+      "bytesOutTotal": 470084,
+      "snapshotsTotal": 5235,
+      "errors": 0,
+      "rssMB": 125.640625,
+      "heapMB": 17.07746124267578
+    },
+    {
+      "t": 9006,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 27597027,
+      "bytesOutTotal": 534940,
+      "snapshotsTotal": 5985,
+      "errors": 0,
+      "rssMB": 120.34375,
+      "heapMB": 13.474807739257812
+    },
+    {
+      "t": 10007,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 31235127,
+      "bytesOutTotal": 600940,
+      "snapshotsTotal": 6735,
+      "errors": 0,
+      "rssMB": 120.75,
+      "heapMB": 17.39183807373047
+    },
+    {
+      "t": 11009,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 34811127,
+      "bytesOutTotal": 666940,
+      "snapshotsTotal": 7485,
+      "errors": 0,
+      "rssMB": 107.3125,
+      "heapMB": 10.9100341796875
+    },
+    {
+      "t": 12010,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 38387127,
+      "bytesOutTotal": 732940,
+      "snapshotsTotal": 8235,
+      "errors": 0,
+      "rssMB": 109.484375,
+      "heapMB": 10.94805908203125
+    },
+    {
+      "t": 13009,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 41963127,
+      "bytesOutTotal": 798940,
+      "snapshotsTotal": 8985,
+      "errors": 0,
+      "rssMB": 109.578125,
+      "heapMB": 11.040641784667969
+    },
+    {
+      "t": 14010,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 45539127,
+      "bytesOutTotal": 863268,
+      "snapshotsTotal": 9735,
+      "errors": 0,
+      "rssMB": 109.65625,
+      "heapMB": 12.159736633300781
+    },
+    {
+      "t": 15011,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 49177227,
+      "bytesOutTotal": 929268,
+      "snapshotsTotal": 10485,
+      "errors": 0,
+      "rssMB": 109.78125,
+      "heapMB": 11.03594970703125
+    },
+    {
+      "t": 16012,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 52753227,
+      "bytesOutTotal": 995268,
+      "snapshotsTotal": 11235,
+      "errors": 0,
+      "rssMB": 109.796875,
+      "heapMB": 11.064735412597656
+    },
+    {
+      "t": 17012,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 56329227,
+      "bytesOutTotal": 1061268,
+      "snapshotsTotal": 11985,
+      "errors": 0,
+      "rssMB": 109.796875,
+      "heapMB": 11.082962036132812
+    },
+    {
+      "t": 18013,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 59905227,
+      "bytesOutTotal": 1127268,
+      "snapshotsTotal": 12735,
+      "errors": 0,
+      "rssMB": 109.8125,
+      "heapMB": 11.102546691894531
+    },
+    {
+      "t": 19014,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 63481227,
+      "bytesOutTotal": 1193268,
+      "snapshotsTotal": 13485,
+      "errors": 0,
+      "rssMB": 109.8125,
+      "heapMB": 11.123825073242188
+    },
+    {
+      "t": 20015,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 67119327,
+      "bytesOutTotal": 1259268,
+      "snapshotsTotal": 14235,
+      "errors": 0,
+      "rssMB": 109.828125,
+      "heapMB": 11.621864318847656
+    },
+    {
+      "t": 21017,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 70695327,
+      "bytesOutTotal": 1325268,
+      "snapshotsTotal": 14985,
+      "errors": 0,
+      "rssMB": 109.84375,
+      "heapMB": 11.638885498046875
+    },
+    {
+      "t": 22018,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 74271327,
+      "bytesOutTotal": 1391268,
+      "snapshotsTotal": 15735,
+      "errors": 0,
+      "rssMB": 109.84375,
+      "heapMB": 11.662506103515625
+    },
+    {
+      "t": 23017,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 77608927,
+      "bytesOutTotal": 1457268,
+      "snapshotsTotal": 16435,
+      "errors": 0,
+      "rssMB": 109.84375,
+      "heapMB": 12.526809692382812
+    },
+    {
+      "t": 24018,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 81184927,
+      "bytesOutTotal": 1523180,
+      "snapshotsTotal": 17185,
+      "errors": 0,
+      "rssMB": 109.84375,
+      "heapMB": 12.543792724609375
+    },
+    {
+      "t": 25018,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 84823027,
+      "bytesOutTotal": 1589180,
+      "snapshotsTotal": 17935,
+      "errors": 0,
+      "rssMB": 109.859375,
+      "heapMB": 11.374259948730469
+    },
+    {
+      "t": 26020,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 88399027,
+      "bytesOutTotal": 1655180,
+      "snapshotsTotal": 18685,
+      "errors": 0,
+      "rssMB": 113.390625,
+      "heapMB": 11.456657409667969
+    },
+    {
+      "t": 27020,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 91975027,
+      "bytesOutTotal": 1721180,
+      "snapshotsTotal": 19435,
+      "errors": 0,
+      "rssMB": 113.484375,
+      "heapMB": 11.442115783691406
+    },
+    {
+      "t": 28021,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 95551027,
+      "bytesOutTotal": 1787180,
+      "snapshotsTotal": 20185,
+      "errors": 0,
+      "rssMB": 113.53125,
+      "heapMB": 11.430145263671875
+    },
+    {
+      "t": 29021,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 99127027,
+      "bytesOutTotal": 1853180,
+      "snapshotsTotal": 20935,
+      "errors": 0,
+      "rssMB": 113.546875,
+      "heapMB": 11.483840942382812
+    },
+    {
+      "t": 30022,
+      "players": 51,
+      "snapPlayers": 51,
+      "bytesInTotal": 102765127,
+      "bytesOutTotal": 1919180,
+      "snapshotsTotal": 21685,
+      "errors": 0,
+      "rssMB": 113.546875,
+      "heapMB": 12.718055725097656
+    },
+    {
+      "t": 31024,
+      "players": 27,
+      "snapPlayers": 51,
+      "bytesInTotal": 104895538,
+      "bytesOutTotal": 1966700,
+      "snapshotsTotal": 22251,
+      "errors": 0,
+      "rssMB": 113.734375,
+      "heapMB": 12.171768188476562
+    },
+    {
+      "t": 32025,
+      "players": 2,
+      "snapPlayers": 51,
+      "bytesInTotal": 105197382,
+      "bytesOutTotal": 1985180,
+      "snapshotsTotal": 22436,
+      "errors": 0,
+      "rssMB": 113.75,
+      "heapMB": 12.013450622558594
+    },
+    {
+      "t": 32031,
+      "players": 2,
+      "snapPlayers": 51,
+      "bytesInTotal": 105197382,
+      "bytesOutTotal": 1985268,
+      "snapshotsTotal": 22436,
+      "errors": 0,
+      "rssMB": 113.75,
+      "heapMB": 12.108955383300781
+    }
+  ],
+  "pass": true
+}

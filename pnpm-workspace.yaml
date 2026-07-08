@@ -1,0 +1,6 @@
+packages:
+  - shared
+  - client
+  - server
+  - server-node
+  - tools/*

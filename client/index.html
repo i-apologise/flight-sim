@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Sim — Arcade Combat</title>
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #02040a; font-family: ui-sans-serif, system-ui, sans-serif; color: #e8eefc; }
+      #app { position: fixed; inset: 0; }
+      canvas { display: block; width: 100%; height: 100%; }
+      #hud {
+        position: fixed; inset: 0; pointer-events: none;
+        text-shadow: 0 1px 2px #000a;
+      }
+      #hud .tl { position: absolute; top: 12px; left: 14px; font-size: 13px; line-height: 1.45; opacity: 0.92; }
+      #hud .tr { position: absolute; top: 12px; right: 14px; font-size: 13px; text-align: right; }
+      #hud .bc { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); font-size: 12px; opacity: 0.75; text-align: center; }
+      #hud .killfeed { position: absolute; top: 80px; right: 14px; font-size: 12px; text-align: right; }
+      #hud .killfeed div { margin-bottom: 4px; opacity: 0.9; }
+      #radar-wrap {
+        position: absolute; left: 14px; bottom: 48px;
+        display: none; flex-direction: column; align-items: flex-start; gap: 4px;
+      }
+      #radar-wrap.visible { display: flex; }
+      #radar {
+        display: block; border-radius: 50%;
+        box-shadow: 0 0 0 1px rgba(60, 220, 120, 0.25), 0 8px 28px rgba(0,0,0,0.45);
+      }
+      #radar-legend {
+        font-size: 10px; opacity: 0.7; letter-spacing: 0.02em;
+        text-shadow: 0 1px 2px #000a;
+      }
+      #radar-legend .you { color: #7dff9a; }
+      #radar-legend .foe { color: #ff5a4a; }
+      #radar-legend .ally { color: #5ad0ff; }
+      #menu {
+        position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+        background: radial-gradient(ellipse at center, #0b1a33 0%, #02040a 70%);
+        z-index: 10;
+      }
+      #menu.hidden { display: none; }
+      .panel {
+        width: min(420px, 92vw); padding: 28px 26px; border-radius: 14px;
+        background: rgba(8, 14, 28, 0.88); border: 1px solid rgba(140, 170, 255, 0.18);
+        box-shadow: 0 20px 60px #0008;
+      }
+      .panel h1 { margin: 0 0 6px; font-size: 22px; letter-spacing: 0.02em; }
+      .panel p { margin: 0 0 18px; opacity: 0.7; font-size: 13px; line-height: 1.45; }
+      label { display: block; font-size: 12px; opacity: 0.7; margin-bottom: 6px; }
+      input, select {
+        width: 100%; box-sizing: border-box; margin-bottom: 14px; padding: 10px 12px;
+        border-radius: 8px; border: 1px solid #2a3a5c; background: #0a1222; color: #e8eefc;
+        font-size: 14px;
+      }
+      .row { display: flex; gap: 10px; }
+      .row > * { flex: 1; }
+      button {
+        width: 100%; padding: 12px 14px; border: 0; border-radius: 9px; cursor: pointer;
+        background: linear-gradient(180deg, #4f7cff, #2f56e0); color: white; font-weight: 600; font-size: 14px;
+      }
+      button.secondary { background: #1a2740; border: 1px solid #31466e; margin-top: 8px; }
+      button:hover { filter: brightness(1.08); }
+      #scoreboard {
+        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        min-width: 280px; background: rgba(6,10,20,0.88); border: 1px solid #2a3a5c;
+        border-radius: 10px; padding: 14px 16px; display: none; z-index: 5; pointer-events: none;
+      }
+      #scoreboard.visible { display: block; }
+      #scoreboard h3 { margin: 0 0 10px; font-size: 13px; opacity: 0.7; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+      #scoreboard table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      #scoreboard td, #scoreboard th { padding: 4px 8px; text-align: left; }
+      #scoreboard th { opacity: 0.5; font-weight: 500; }
+      #toast {
+        position: fixed; bottom: 56px; left: 50%; transform: translateX(-50%);
+        background: rgba(0,0,0,0.65); padding: 8px 14px; border-radius: 8px; font-size: 13px;
+        opacity: 0; transition: opacity 0.2s; z-index: 6; pointer-events: none;
+      }
+      #toast.show { opacity: 1; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="hud">
+      <div class="tl" id="hud-tl"></div>
+      <div class="tr" id="hud-tr"></div>
+      <div class="killfeed" id="killfeed"></div>
+      <div id="radar-wrap">
+        <canvas id="radar" width="168" height="168" aria-label="Tactical radar"></canvas>
+        <div id="radar-legend"><span class="you">▲ you</span> · <span class="foe">▲ foe</span> · keys <b>1-9</b> speed · <b>0</b> idle · [ ] radar</div>
+      </div>
+      <div class="bc" id="hud-bc">WASD fly · Q/E yaw · 1-9/0 speed · Shift/Ctrl fine thr · GND: thr then W takeoff · Space fire · B brake · G gear · Esc</div>
+    </div>
+    <div id="scoreboard"><h3>Scoreboard</h3><table><thead><tr><th>Pilot</th><th>K</th><th>D</th></tr></thead><tbody id="score-body"></tbody></table></div>
+    <div id="toast"></div>
+    <div id="menu">
+      <div class="panel">
+        <h1>✈ Flight Combat</h1>
+        <p>Public lobbies: <b>arena</b> (DM) / <b>skypark</b> (free). Each browser tab is a separate pilot — open two tabs to dogfight yourself.</p>
+        <label for="nick">Callsign</label>
+        <input id="nick" maxlength="16" placeholder="Ace" autocomplete="off" />
+        <div class="row">
+          <div>
+            <label for="mode">Mode</label>
+            <select id="mode">
+              <option value="deathmatch">Deathmatch (room: arena)</option>
+              <option value="peaceful">Free flight (room: skypark)</option>
+            </select>
+          </div>
+          <div>
+            <label for="room">Room (leave blank = public)</label>
+            <input id="room" placeholder="arena / skypark" autocomplete="off" />
+          </div>
+        </div>
+        <button id="btn-online" type="button">Join public multiplayer</button>
+        <button id="btn-solo" class="secondary" type="button">Solo practice (runway)</button>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

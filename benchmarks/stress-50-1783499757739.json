@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "players": 50,
+    "joined": 0,
+    "hz": 15,
+    "durationMs": 25000,
+    "room": "arena",
+    "mode": "deathmatch",
+    "api": "http://127.0.0.1:8787",
+    "timestamp": "2026-07-08T08:35:57.737Z"
+  },
+  "totals": {
+    "bytesIn": 0,
+    "bytesOut": 0,
+    "snapshots": 0,
+    "errors": 50,
+    "bytesInPerSec": 0,
+    "bytesOutPerSec": 0,
+    "avgSnapshotsPerBot": 0
+  },
+  "bandwidth": {
+    "downlinkMBps": 0,
+    "uplinkMBps": 0,
+    "downlinkKBpsPerBot": 0
+  },
+  "timeline": [
+    {
+      "t": 22,
+      "players": 0,
+      "snapPlayers": 0,
+      "bytesInTotal": 0,
+      "bytesOutTotal": 0,
+      "snapshotsTotal": 0,
+      "errors": 1,
+      "rssMB": 80.546875,
+      "heapMB": 10.190139770507812
+    },
+    {
+      "t": 1007,
+      "players": 0,
+      "snapPlayers": 0,
+      "bytesInTotal": 0,
+      "bytesOutTotal": 0,
+      "snapshotsTotal": 0,
+      "errors": 25,
+      "rssMB": 108.609375,
+      "heapMB": 10.178787231445312
+    },
+    {
+      "t": 1977,
+      "players": 0,
+      "snapPlayers": 0,
+      "bytesInTotal": 0,
+      "bytesOutTotal": 0,
+      "snapshotsTotal": 0,
+      "errors": 50,
+      "rssMB": 108.765625,
+      "heapMB": 10.571014404296875
+    }
+  ],
+  "pass": false
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@flight-sim/loadtest",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "@flight-sim/shared": "workspace:*",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.3",
+    "@types/ws": "^8.18.1"
+  }
+}

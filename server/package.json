@@ -1,0 +1,18 @@
+{
+  "name": "@flight-sim/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'CF Workers path: use server-node for local. See docs/DESIGN.md' && exit 0",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@flight-sim/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "@cloudflare/workers-types": "^4.20250620.0"
+  }
+}

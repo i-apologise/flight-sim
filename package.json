@@ -1,0 +1,26 @@
+{
+  "name": "flight-sim",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.15.1",
+  "scripts": {
+    "dev": "pnpm --filter @flight-sim/client dev",
+    "dev:server": "pnpm --filter @flight-sim/server-node dev",
+    "dev:all": "pnpm -r --parallel --filter @flight-sim/client --filter @flight-sim/server-node dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "loadtest": "pnpm --filter @flight-sim/loadtest start",
+    "build:client": "pnpm --filter @flight-sim/client build",
+    "start": "pnpm --filter @flight-sim/client build && pnpm --filter @flight-sim/server-node start",
+    "play": "pnpm start"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
